@@ -24,11 +24,11 @@ The review covered **1,374 transactions from March 1, 2026 through August 31, 20
 
 ## 1. Customer Profile & KYC Review
 
-![Customer Profile](images/01-customer-profile.png)
+![Customer Profile](AML%20Analysis%201%20-%20Customer%20Profile.png)
 
 The investigation begins with the customer's KYC profile to establish a baseline for expected account activity.
 
-The synthetic customer is an **IT Project Manager** earning approximately **$92,000 annually** and maintaining a personal checking account.
+The synthetic customer is an **IT Project Manager** earning approximately **$92,000 annually** with a personal checking account.
 
 ### Expected Customer Activity
 
@@ -39,17 +39,17 @@ The synthetic customer is an **IT Project Manager** earning approximately **$92,
 - **Primary Channels:** Mobile, Debit Card, and ACH
 - **Initial Risk Rating:** Low
 
-This profile was used throughout the investigation to compare the customer's expected behavior against observed transaction activity.
+The KYC profile established the expected baseline used to evaluate whether observed transaction activity was reasonable for the customer.
 
 ---
 
 ## 2. Raw Transaction Data
 
-![Transactions](images/02-transactions.png)
+![Transactions](AML%20Analysis%201%20-%20Transactions.png)
 
 The **Transactions** worksheet contains the complete transaction-level dataset used for the investigation.
 
-The dataset includes fields such as:
+The dataset includes:
 
 - Transaction ID
 - Transaction Date
@@ -69,60 +69,49 @@ The dataset includes fields such as:
 - Description
 - Balance After Transaction
 
-The account contained **1,374 transactions** across several transaction types, including:
+The account contained **1,374 transactions** across multiple transaction types, including card purchases, ACH activity, payroll, P2P transfers, ATM withdrawals, cash deposits, wire transfers, and cashier's checks.
 
-- Card Purchases
-- ACH Debits
-- ACH Credits
-- Payroll
-- P2P Transfers
-- ATM Withdrawals
-- Cash Deposits
-- Wire Transfers
-- Cashier's Checks
-
-The raw transaction data served as the source dataset for the Power Query transformation and subsequent AML analysis.
+This worksheet served as the raw source data for the analytical workflow.
 
 ---
 
 ## 3. Transaction Transformation & AML Flags
 
-![Transactions Table](images/03-transactions-table.png)
+![Transactions Table](AML%20Analysis%201%20-%20Transactions%20Table.png)
 
-The raw transaction data was cleaned, transformed, and organized into a structured analytical table using **Power Query** and **Excel**.
+The transaction data was organized and transformed into a structured analytical table using **Excel and Power Query**.
 
-Additional analytical fields were created to support transaction monitoring and investigation.
+Additional fields were created to support AML transaction monitoring and investigation.
 
-Examples include:
+These included:
 
 - Signed transaction amounts
 - Large transaction indicators
-- Near-$10K transaction flags
-- Cash activity indicators
-- Transaction categorization
-- Direction-based transaction analysis
-- AML review fields
-
-Power Query helped separate the original source data from the analytical dataset and created a repeatable workflow for transaction review.
+- Near-$10K indicators
+- Transaction classifications
+- AML review flags
+- Transaction direction analysis
 
 ### Power Query Techniques Used
 
-- Loading transaction data into Power Query
-- Reviewing and correcting data types
+- Loading source transaction data
+- Reviewing and assigning data types
 - Creating conditional columns
 - Transforming transaction fields
-- Creating AML flag columns
+- Creating analytical flags
 - Organizing transaction categories
 - Preparing data for PivotTable analysis
 - Loading transformed data back into Excel
+
+Power Query created a repeatable process that separated the raw transaction data from the analytical dataset.
 
 ---
 
 ## 4. Transaction Analysis Dashboard
 
-![Analysis Dashboard](images/04-analysis.png)
+![Analysis](AML%20Analysis%201%20-%20Analysis.png)
 
-The **Analysis** worksheet summarizes transaction activity and highlights transactions requiring additional review.
+The **Analysis** worksheet summarizes customer activity by transaction type and highlights activity requiring further review.
 
 The analysis included:
 
@@ -131,38 +120,37 @@ The analysis included:
 - Flagged transaction count
 - Flagged transaction amount
 - Flagged transaction percentage
-- Near-$10K activity
 - Cash deposit analysis
-- International wire analysis
-- Comparison of total activity versus flagged activity
-- PivotTable-based transaction summaries
-- Charts and visualizations
+- Near-$10K activity
+- International wire activity
+- PivotTable analysis
+- Charts comparing total and flagged transaction activity
 
 Cash deposits were identified as the primary source of flagged activity.
 
 All **7 reviewed cash deposits were flagged**, totaling **$67,080**.
 
-The customer's KYC profile indicated expected cash activity of typically less than **$1,000 per month**, making the observed cash activity significantly inconsistent with the customer's expected behavior.
+The customer's KYC profile indicated expected cash activity of typically less than **$1,000 per month**, making the observed activity significantly inconsistent with the stated profile.
 
 ---
 
 ## 5. Near-$10K Transaction Review
 
-![Near $10K Review](images/05-near-10k-review.png)
+![Near 10K Review](AML%20Analysis%201%20-%20Near%2010K%20Review.png)
 
-A focused investigation was conducted on transactions occurring close to the $10,000 threshold.
+A focused transaction review was performed on activity occurring close to the $10,000 threshold.
 
 The review identified **10 transactions totaling $93,280** between **July 6 and July 18, 2026**.
 
-### Cash Deposits
+### Cash Deposit Activity
 
-The transaction sequence included:
+The reviewed activity included:
 
 - **7 cash deposits**
-- **Total cash deposited: $67,080**
-- Individual cash deposits ranged from approximately **$9,150 to $9,890**
+- **$67,080 total deposited**
+- Individual deposits ranging from approximately **$9,150 to $9,890**
 
-The deposits occurred across multiple Northern Virginia branch locations, including:
+The deposits occurred across several Northern Virginia branch locations, including:
 
 - Alexandria
 - Arlington
@@ -172,13 +160,11 @@ The deposits occurred across multiple Northern Virginia branch locations, includ
 - Annandale
 - Tysons
 
-The repeated use of different branch locations combined with repeated near-threshold cash deposits represented an important transaction-monitoring indicator.
+### International Wire Activity
 
-### International Wire Transfers
+The investigation also identified **3 outbound international wires totaling $26,200**.
 
-The review also identified **3 outbound international wire transfers totaling $26,200**.
-
-The wires were sent to **Orion Trading LLC in the United Arab Emirates**.
+All three wires were sent to **Orion Trading LLC in the United Arab Emirates**.
 
 The wire amounts were:
 
@@ -186,36 +172,25 @@ The wire amounts were:
 - **$8,800**
 - **$9,200**
 
-The customer had disclosed **no expected international activity** in the KYC profile.
+The customer's KYC profile disclosed **no expected international activity**.
 
 ### Transaction Pattern
 
-The review identified repeated sequences involving:
+The review identified repeated patterns involving:
 
 **Cash Deposit → International Wire Transfer**
 
-The activity occurred within relatively short time intervals and repeated more than once during the review period.
+The combination of repeated near-$10K deposits, multiple branch locations, subsequent international wires, rapid movement of funds, and significant deviation from expected customer behavior created indicators consistent with potential **structuring and rapid movement of funds**.
 
-The combination of:
-
-- Near-$10K cash deposits
-- Repeated cash activity
-- Multiple branch locations
-- International wire transfers
-- Rapid movement of funds
-- Activity inconsistent with the KYC profile
-
-created indicators consistent with potential **structuring and rapid movement of funds**.
-
-A single transaction does not establish suspicious activity. The concern resulted from the overall transaction pattern and its inconsistency with the customer's stated profile.
+A single transaction alone does not establish suspicious activity. The risk assessment was based on the combined transaction pattern and its inconsistency with the customer's expected profile.
 
 ---
 
 ## 6. Final Investigation Summary
 
-![Analysis Summary](images/06-analysis-summary.png)
+![Analysis Summary](AML%20Analysis%201%20-%20Analysis%20Summary.png)
 
-The **Analysis Summary** worksheet consolidates the results of the investigation into a final AML review.
+The **Analysis Summary** worksheet consolidates the investigation into a final AML review.
 
 The summary includes:
 
@@ -224,7 +199,7 @@ The summary includes:
 - Activity reviewed
 - Key findings
 - Risk indicators
-- Profile comparison
+- KYC comparison
 - Risk assessment
 - Investigation disposition
 
@@ -244,15 +219,15 @@ The customer disclosed no expected international activity, yet **3 international
 
 #### Rapid Movement of Funds
 
-Multiple cash deposits were followed by outbound international wire transfers during the reviewed period.
+Multiple cash deposits were followed by outbound international wire transfers during the review period.
 
 #### Multiple Branch Locations
 
-Cash deposits were made across several Northern Virginia branch locations.
+Cash deposits were conducted across several Northern Virginia branch locations.
 
 #### Repeated Transaction Pattern
 
-The activity occurred multiple times rather than appearing as a single isolated transaction.
+The behavior occurred multiple times rather than appearing as a single isolated transaction.
 
 ---
 
@@ -266,40 +241,40 @@ Example:
 
 `=COUNTIF(Transaction_Type_Range,"Cash Deposit")`
 
-Applications included:
+Used for:
 
-- Counting cash deposits
-- Counting wire transfers
-- Counting transaction categories
-- Counting flagged transactions
+- Cash deposit counts
+- Wire transfer counts
+- Transaction category counts
+- Flagged transaction counts
 
 ---
 
 ## COUNTIFS
 
-Used to count transactions meeting multiple conditions.
+Used to count transactions meeting multiple criteria.
 
 Example:
 
 `=COUNTIFS(Transaction_Type_Range,"Cash Deposit",Amount_Range,">=8000",Amount_Range,"<10000")`
 
-Applications included:
+Used for:
 
-- Counting near-$10K cash deposits
-- Counting transactions within specific dollar ranges
-- Counting transactions matching multiple AML criteria
+- Near-$10K transaction counts
+- Multi-condition AML flags
+- Transaction type and amount analysis
 
 ---
 
 ## SUMIF
 
-Used to calculate the total dollar amount associated with a specific transaction category.
+Used to calculate the total amount associated with a specific transaction category.
 
 Example:
 
 `=SUMIF(Transaction_Type_Range,"Cash Deposit",Amount_Range)`
 
-Applications included calculating total amounts for:
+Used to calculate totals for:
 
 - Cash Deposits
 - Wire Transfers
@@ -311,53 +286,51 @@ Applications included calculating total amounts for:
 
 ## SUMIFS
 
-Used to calculate transaction amounts meeting multiple conditions.
+Used to calculate dollar amounts satisfying multiple criteria.
 
 Example:
 
 `=SUMIFS(Amount_Range,Transaction_Type_Range,"Cash Deposit",Amount_Range,">=8000",Amount_Range,"<10000")`
 
-Applications included:
+Used for:
 
 - Near-$10K transaction totals
-- Cash deposit totals
 - Flagged transaction totals
-- Transaction totals based on multiple AML criteria
+- Cash deposit totals
+- Multi-condition transaction analysis
 
 ---
 
 ## IF
 
-Used to classify transactions based on transaction characteristics.
+Used to classify transactions based on specific characteristics.
 
 Example:
 
 `=IF(Amount>=10000,"Large Transaction","Normal")`
 
-Applications included:
+Used for:
 
-- Large transaction flags
-- AML classification
+- AML flags
+- Large transaction classifications
+- Flagged vs. normal activity
 - Transaction categorization
-- Flagged versus normal activity
 
 ---
 
 ## AND
 
-Used with `IF` statements when multiple conditions had to be satisfied simultaneously.
+Used with `IF` when multiple conditions needed to be satisfied.
 
 Example:
 
 `=IF(AND(Transaction_Type="Cash Deposit",Amount>=8000,Amount<10000),"Near 10K","Normal")`
 
-This was useful for identifying transactions that met multiple AML review criteria.
+This was useful for creating transaction-level AML indicators based on multiple criteria.
 
 ---
 
 # Additional Excel Skills Demonstrated
-
-This project also used:
 
 - Microsoft Excel Tables
 - Power Query
@@ -366,24 +339,23 @@ This project also used:
 - Conditional Columns
 - Filtering
 - Sorting
+- Data Cleaning
 - Transaction Categorization
 - AML Flag Creation
 - Data Aggregation
 - Percentage Calculations
+- Transaction Count Analysis
+- Transaction Amount Analysis
 - KYC-to-Transaction Comparison
 - Transaction Drill-Down Analysis
 - Dashboard Creation
 - Data Visualization
 - Summary Tables
-- Transaction Count Analysis
-- Transaction Amount Analysis
 - Investigation Documentation
 
 ---
 
 # AML Skills Demonstrated
-
-This project demonstrates practical exposure to:
 
 - AML Transaction Monitoring
 - KYC Profile Review
@@ -408,15 +380,15 @@ This project demonstrates practical exposure to:
 
 The reviewed transaction activity was materially inconsistent with the customer's stated KYC profile.
 
-The customer was expected to conduct limited cash activity and had disclosed no expected international activity. However, the investigation identified repeated cash deposits immediately below $10,000, substantial cash activity relative to the customer's expected profile, use of multiple branch locations, and subsequent international wire transfers.
+The customer was expected to conduct limited cash activity and disclosed no expected international activity. However, the investigation identified repeated cash deposits immediately below $10,000, substantially higher-than-expected cash activity, use of multiple branch locations, and subsequent international wire transfers.
 
-The combination of these factors created multiple AML risk indicators that warranted further investigation.
+The combination of these factors created multiple AML risk indicators warranting further investigation.
 
 ## Disposition
 
 **Escalate for enhanced review and SAR consideration in accordance with institutional procedures.**
 
-The analysis does not conclude that money laundering occurred. Instead, the identified patterns warrant additional review to determine whether the activity has a reasonable explanation or requires further escalation.
+The analysis does not conclude that money laundering occurred. Instead, the identified transaction patterns warrant additional review to determine whether the activity has a reasonable explanation or requires further escalation.
 
 ---
 
@@ -424,29 +396,25 @@ The analysis does not conclude that money laundering occurred. Instead, the iden
 
 | Worksheet | Purpose |
 |---|---|
-| **Customer Profile** | Contains KYC information and expected customer activity |
-| **Transactions** | Contains the original transaction-level dataset |
-| **Transactions Table** | Contains cleaned and transformed transaction data |
-| **Analysis** | Contains transaction metrics, PivotTable analysis, flags, and visualizations |
-| **Near-10K Review** | Contains detailed review of near-threshold cash deposits and international wires |
-| **Analysis Summary** | Contains final findings, red flags, risk assessment, and disposition |
+| **Customer Profile** | KYC information and expected customer activity |
+| **Transactions** | Original transaction-level dataset |
+| **Transactions Table** | Cleaned and transformed analytical transaction data |
+| **Analysis** | Transaction metrics, flagged activity, PivotTables, and visualizations |
+| **Near-10K Review** | Detailed review of near-threshold cash deposits and international wires |
+| **Analysis Summary** | Final findings, risk indicators, risk assessment, and disposition |
 
 ---
 
-# Repository Structure
+# Project Files
 
-    AML-Transaction-Monitoring-Case-Study/
-    │
-    ├── README.md
-    ├── AML-Analysis.xlsx
-    │
-    └── images/
-        ├── 01-customer-profile.png
-        ├── 02-transactions.png
-        ├── 03-transactions-table.png
-        ├── 04-analysis.png
-        ├── 05-near-10k-review.png
-        └── 06-analysis-summary.png
+- `AML Analysis.xlsx`
+- `AML Analysis 1 - Customer Profile.png`
+- `AML Analysis 1 - Transactions.png`
+- `AML Analysis 1 - Transactions Table.png`
+- `AML Analysis 1 - Analysis.png`
+- `AML Analysis 1 - Near 10K Review.png`
+- `AML Analysis 1 - Analysis Summary.png`
+- `README.md`
 
 ---
 
